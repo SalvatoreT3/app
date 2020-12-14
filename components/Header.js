@@ -1,18 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import {Appbar} from 'react-native-paper'
+import { Appbar } from 'react-native-paper'
 import Row from '../components/row'
 
 
 export default function Header() {
     return (
         <View>
-        <Appbar.Header>
-           
-            <Appbar.Content title="React App"/>
-            
-            <Appbar.Action icon="dots-vertical" />
-        </Appbar.Header>
+            <Appbar.Header>
+
+                <Appbar.Content title="React App" />
+
+                <Appbar.Action icon="dots-vertical" />
+            </Appbar.Header>
         </View>
 
     )
