@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 export default function Screens(props) {
     return (
         <>
-            <NavigationContainer>
+            <NavigationContainer >
                 <Stack.Navigator initialRouteName="Auth"  screenOptions={{headerShown: false}}>
                     <Stack.Screen name="Auth" component={Auth}/>
                     <Stack.Screen name="Main" component={Main} />

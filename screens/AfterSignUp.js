@@ -1,10 +1,11 @@
 import React from 'react'
 import {View, Text, Button} from 'react-native'
-
+import Header from '../components/Header'
 
 export default  function AfterSignUp() {
     return (
         <View>
+            
             <Text>THANKS</Text>
             <Text>
                 Welcome to our app.
