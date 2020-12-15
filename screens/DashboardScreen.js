@@ -6,10 +6,13 @@ import Spacer from '../components/Spacer'
 import { layoutStyles } from '../styles/Layout'
 import { rootNavigation } from '../Utility/navigation'
 import { AuthContext } from '../context/AuthContext'
+import InfoBox  from '../components/InfoBox'
+
 
 export default function DashboardScreen(props) {
-    const { onLogout } = useContext(AuthContext)
 
+    const { onLogout } = useContext(AuthContext)
+    
     return (
         <View style={[layoutStyles.container, { flex: 1, justifyContent: 'space-between' }]}>
             <View>
@@ -21,6 +24,9 @@ export default function DashboardScreen(props) {
                 <Button onPress={onLogout}>Logout</Button>
                 <Spacer size={20} />
             </View>
+
+            <InfoBox/>
+       
         </View>
     )
 }
