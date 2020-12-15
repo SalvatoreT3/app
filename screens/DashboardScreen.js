@@ -21,6 +21,7 @@ export default function DashboardScreen(props) {
                 <Button onPress={onLogout}>Logout</Button>
                 <Spacer size={20} />
             </View>
+
         </View>
     )
 }
