@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import {  View, Text, Button } from 'react-native'
+import {  View, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import Button from '../components/Button'
 
 
 export default function CollectionScreen({navigation}) {
@@ -22,7 +23,8 @@ export default function CollectionScreen({navigation}) {
                             <Text>{card.name}</Text>
                             <Text>{card.game}</Text>
                             <Text>{card.description}</Text>
-                            <Button title='Go to Card' onPress={() => navigation.navigate('CardScreen', card)}/>
+                            {/*<Button title='Go to Card' onPress={() => navigation.navigate('CardScreen', card)}/>*/}
+                            <Button  onPress={() => navigation.navigate('CardScreen', card)}>To card</Button>
                         </View>
                     )
                 })
