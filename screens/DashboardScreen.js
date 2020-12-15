@@ -7,11 +7,14 @@ import { layoutStyles } from '../styles/Layout'
 import { rootNavigation } from '../Utility/navigation'
 import { AuthContext } from '../context/AuthContext'
 import InfoBox  from '../components/InfoBox'
+import {CardsContext} from '.../context/CardsContext'
 
 
 export default function DashboardScreen(props) {
 
     const { onLogout } = useContext(AuthContext)
+
+    const{listLength} = useContext(CardsContext)
     
     return (
         <View style={[layoutStyles.container, { flex: 1, justifyContent: 'space-between' }]}>
