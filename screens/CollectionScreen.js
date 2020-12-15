@@ -22,7 +22,7 @@ export default function CollectionScreen({navigation}) {
                             <Text>{card.name}</Text>
                             <Text>{card.game}</Text>
                             <Text>{card.description}</Text>
-                            <Button title='Go to Card' onPress={() => navigation.navigate('CardScreen')}/>
+                            <Button title='Go to Card' onPress={() => navigation.navigate('CardScreen', card)}/>
                         </View>
                     )
                 })
