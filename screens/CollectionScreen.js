@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View, Text, Button } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import Button from '../components/Button'
 import useFetch from '../hooks/useFetch'
 
-export default function CollectionScreen() {
+export default function CollectionScreen({navigation}) {
 
     const [cardList, setCardList] = useState([])
 
@@ -17,13 +16,13 @@ export default function CollectionScreen() {
     return (
         <ScrollView>
             {
-                cardList.map((card)=>{
-                    return(
+                cardList.map((card) => {
+                    return (
                         <View key={card.id}>
                             <Text>{card.name}</Text>
                             <Text>{card.game}</Text>
                             <Text>{card.description}</Text>
-                            <Button>Go to card</Button>
+                            <Button title="Go To Card" onPress={() => navigation.navigate('CardScreen', card)} />
                         </View>
                     )
                 })
@@ -31,6 +30,6 @@ export default function CollectionScreen() {
         </ScrollView>
 
     )
-}  
+}
 
 
