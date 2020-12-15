@@ -25,7 +25,9 @@ export default function DashboardScreen(props) {
                 <Spacer size={20} />
             </View>
 
-            <InfoBox/>
+            <InfoBox>
+                Oggi e il giorno
+            </InfoBox>
        
         </View>
     )
