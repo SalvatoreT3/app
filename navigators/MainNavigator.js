@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import DashboardScreen from '../screens/DashboardScreen'
 import CollectionScreen from '../screens/CollectionScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import CollectionNavigator from '../navigators/CollectionNavigator'
 
 
 const MainStack = createStackNavigator()
@@ -14,7 +15,7 @@ export default function MainNavigator() {
       
       <Tab.Navigator>
         <Tab.Screen name="Home" component={DashboardScreen} />
-        <Tab.Screen name="Collection" component={CollectionScreen} />
+        <Tab.Screen name="CollectionNavigator" component={CollectionNavigator} />
       </Tab.Navigator>
    
   )
