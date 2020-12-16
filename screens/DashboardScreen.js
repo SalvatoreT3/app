@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 import Title from '../components/Title'
 import Button from '../components/Button'
@@ -6,11 +6,11 @@ import Spacer from '../components/Spacer'
 import { layoutStyles } from '../styles/Layout'
 import { rootNavigation } from '../Utility/navigation'
 import { AuthContext } from '../context/AuthContext'
-import InfoBox  from '../components/InfoBox'
-import {CardsContext} from '../context/CardsContext'
+import InfoBox from '../components/InfoBox'
+import { CardsContext } from '../context/CardsContext'
 
 export default function DashboardScreen(props) {
-
+    
     const { onLogout } = useContext(AuthContext)
     const [cards, setCards] = useState([])
 
@@ -28,16 +28,16 @@ export default function DashboardScreen(props) {
             </View>
 
             <InfoBox>
-                Oggi e il giorno ue
+                Oggi e il giorno
             </InfoBox>
-            <Text>{cards.length+' carte'}</Text>
+            <Text>{cards.length + ' carte'}</Text>
             <View>
                 <Button onPress={onLogout}>Logout</Button>
                 <Spacer size={20} />
             </View>
 
-           
-       
+
+
         </View>
     )
 }

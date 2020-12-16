@@ -73,7 +73,7 @@ export default function LoginScreen({ navigation, route }) {
 
         </ScrollView>
 
-    </View>
+      </View>
     </>
   )
 
