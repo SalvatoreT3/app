@@ -7,7 +7,7 @@ export default function CardScreen(props) {
 
     const nav = props.navigation
     const card = props.route.params
-
+    
     return (
         <View>
             <Text>{card.name}</Text>
