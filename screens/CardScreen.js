@@ -1,18 +1,21 @@
 import React from 'react'
 import {View, Text} from 'react-native'
-import CollectionScreen from './CollectionScreen'
+import Button from '../components/Button'
 
-export default function CardScreen(card) {
-    console.log(card)
+export default function CardScreen(props) {
 
-    const cardRoot= card.route.params
+
+    const nav = props.navigation
+    const card = props.route.params
+    
     return (
         <View>
-            <Text>{cardRoot.name}</Text>
-            <Text>{cardRoot.game}</Text>
-            <Text>{cardRoot.description}</Text>
+            <Text>{card.name}</Text>
+            <Text>{card.game}</Text>
+            <Text>{card.description}</Text>
+            <Button onPress={() => nav.navigate('TradeScreen', card)}>Trade Card</Button>
         </View>
     )
-}
+} 
 
 
