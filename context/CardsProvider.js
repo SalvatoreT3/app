@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthProvider from './CardsContext'
+import CardsProvider from './CardsContext'
 
 export default function Providers({ children }) {
     return (
