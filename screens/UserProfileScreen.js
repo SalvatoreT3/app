@@ -14,7 +14,7 @@ export default function UserProfileScreen() {
             Authorization: token
         })
         .then(res => res.json())
-        .then(data => setCode(data))
+        .then(data => setCode(data.payload.portfolio_code))
     
     }
     console.log(code)
@@ -26,7 +26,7 @@ export default function UserProfileScreen() {
     return (
         <View style={{ marginTop: 50 }}>
             <Text>{user.email}</Text> 
-            <Text>{user.portfolio_code}</Text> 
+            <Text>{code != ' ' ? code : user.portfolio_code}</Text> 
             
 
             <Button onPress={() => generateCode()}>Generate Code</Button>
