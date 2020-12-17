@@ -5,8 +5,9 @@ import Button from '../components/Button'
 import {AuthContext}  from '../context/AuthContext'
 
 export default function UserProfileScreen() { 
-
+    
     const [code, setCode] = useState('')
+
     const generateCode = () =>{
         fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code',{
             method: 'POST',
@@ -21,7 +22,7 @@ export default function UserProfileScreen() {
     const {user} =useContext(AuthContext)
     
     const{token} = useContext(AuthContext)
-   
+   if(token){
     return (
         <View style={{ marginTop: 50 }}>
             <Text>{user.email}</Text> 
@@ -32,5 +33,10 @@ export default function UserProfileScreen() {
 
         </View>
     )
+   }else{
+       return(
+           <></>
+       )
+   }
 }
 
