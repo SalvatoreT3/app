@@ -34,6 +34,7 @@ export default function LoginScreen({ navigation, route }) {
       if (result) {
         manageUserData(payload)
         rootNavigation.current.navigate('MainNavigator')
+        console.log(payload)
       } else {
         setError(errors[0].message)
         setMessageOpen(true)
@@ -48,7 +49,7 @@ export default function LoginScreen({ navigation, route }) {
       setLoading(false)
     }
   }
-
+  
   return (
     <>
       <Alert open={messageOpen} message={error} onClose={() => setMessageOpen()} typology={error ? 'danger' : 'success'} />
