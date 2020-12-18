@@ -6,9 +6,10 @@ import Button from '../components/Button'
 import { AuthContext } from '../context/AuthContext'
 
 
+
 export default function UserProfileScreen() {
 
-    const [code, setCode] = useState('')
+    const { user, token, setUser } = useContext(AuthContext)
 
     const generateCode = () => {
         fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
@@ -16,37 +17,40 @@ export default function UserProfileScreen() {
             Authorization: token
         })
             .then(res => res.json())
-            .then(data => setCode(data.payload.portfolio_code))
-        console.log('non va')
-    }
-    console.log(code)
+            .then(data => {
+                console.log('RESPONSE', data)
+                if (data.result) {
+                    setUser({
+                        ...user,
+                        portfolio_code: data.payload.portfolio_code,
+                    })
+                }
 
-    const { user } = useContext(AuthContext)
-    const { token } = useContext(AuthContext)
+            })
+
+    }
+
+
+
     /* const [user, setUser] = useState({})
     useEffect(() => {
         const getUser = async () => await AsyncStorage.getItem('AuthUser')
         setUser(getUser)
     },[]) */
 
+    return (
+        <View style={{ marginTop: 50 }}>
+            <Text>{user.email}</Text>
+            {
+                (user.portfolio_code) ?
+                    <Text> {user.portfolio_code}</Text> :
+                    <Button
+                        onPress={() => generateCode()}
+                    >Generate Code
+                    </Button>
+            }
 
-    if (user) {
-        return (
-            <View style={{ marginTop: 50 }}>
-                <Text>{user.email}</Text>
-                <Text>{(code != '') ? code : user.portfolio_code}</Text>
-
-
-                <Button
-                    onPress={() => generateCode()}
-                    disabled={!!code || !!user.portfolio_code}>Generate Code</Button>
-
-            </View>
-
-        )
-    } else {
-        return null
-    }
-
+        </View>
+    )
 }
 

@@ -7,19 +7,12 @@ import { AuthContext } from '../context/AuthContext'
 const AppStack = createStackNavigator()
 
 export default function AppNavigator() {
-    const { token } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
-   // se il valore loading di authcontext è true allora la componente ritorna null
-    const{loading} =useContext(AuthContext)
-
-    if(loading){
-        return null
-    } 
-    // altrimenti va bene cosi com'è.
-
+   
     return (
         <AppStack.Navigator
-            initialRouteName={token ? "MainNavigator" : "AuthNavigator"}
+            initialRouteName={user ? "MainNavigator" : "AuthNavigator"}
             screenOptions={{
                 headerShown: false,
                 cardStyle: { paddingTop: 0 },
