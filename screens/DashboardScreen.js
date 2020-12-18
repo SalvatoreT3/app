@@ -4,10 +4,10 @@ import Title from '../components/Title'
 import Button from '../components/Button'
 import Spacer from '../components/Spacer'
 import { layoutStyles } from '../styles/Layout'
-import { rootNavigation } from '../Utility/navigation'
+
 import { AuthContext } from '../context/AuthContext'
 import InfoBox  from '../components/InfoBox'
-import {CardsContext} from '../context/CardsContext'
+
 
 export default function DashboardScreen(props) {
 

@@ -15,14 +15,16 @@ export default function useLoader(){
                 setTokenProv(token);
 
                 // l'endpoint non è ancora esistente
-                // try{
-                //     const {result,payload} = await api.get("authentication/refresh_token")
-                //     if (result) {
-                //         manageUserData(payload);
-                //     }
-                // } catch (err) {
-                //     console.log(err);
-                // }
+                 try{
+                     const {result,payload} = await api.post("refresh-token")
+                     console.log(result)
+                     console.log(payload)
+                     if (result) {
+                         manageUserData(payload);
+                     }
+                 } catch (err) {
+                     console.log(err);
+                 }
             }
             setLoading(false);
         }
