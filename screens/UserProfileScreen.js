@@ -5,10 +5,11 @@ import { useContext } from 'react/cjs/react.development'
 import Button from '../components/Button'
 import { AuthContext } from '../context/AuthContext'
 
+
 export default function UserProfileScreen() {
 
     const [code, setCode] = useState('')
-    
+
     const generateCode = () => {
         fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
             method: 'POST',
@@ -20,14 +21,13 @@ export default function UserProfileScreen() {
     }
     console.log(code)
 
-    const { user } = useContext(AuthContext) 
+    const { user } = useContext(AuthContext)
     const { token } = useContext(AuthContext)
     /* const [user, setUser] = useState({})
     useEffect(() => {
         const getUser = async () => await AsyncStorage.getItem('AuthUser')
         setUser(getUser)
     },[]) */
-
 
 
     if (user) {
@@ -42,11 +42,11 @@ export default function UserProfileScreen() {
                     disabled={!!code || !!user.portfolio_code}>Generate Code</Button>
 
             </View>
+
         )
     } else {
-        return (
-            <></>
-        )
+        return null
     }
+
 }
 
