@@ -4,32 +4,33 @@ import { View, Text } from 'react-native'
 import { useContext } from 'react/cjs/react.development'
 import Button from '../components/Button'
 import { AuthContext } from '../context/AuthContext'
+import QRCode from 'react-native-qrcode-svg';
 
 
 
 export default function UserProfileScreen() {
 
     const { user, token, setUser } = useContext(AuthContext)
-    
+
     const generateCode = () => {
         fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
             method: 'POST',
             Authorization: token
         })
             .then(res => res.json())
-            .then(data =>{
-                console.log('RESPONSE',data)
-                if(data.result){
+            .then(data => {
+                console.log('RESPONSE', data)
+                if (data.result) {
                     setUser({
-                        ...user, 
+                        ...user,
                         portfolio_code: data.payload.portfolio_code,
                     })
                 }
-                
+
             })
-       
+
     }
-    
+
 
 
     /* const [user, setUser] = useState({})
@@ -38,21 +39,27 @@ export default function UserProfileScreen() {
         setUser(getUser)
     },[]) */
 
+    if (user) {
+        return (
+            <View style={{ marginTop: 50 }}>
+                <Text>{user.email}</Text>
+                {
+                    (user.portfolio_code) ?
+                        <View>
+                            <Text> {user.portfolio_code}</Text>
+                            <QRCode value={ user.portfolio_code} />
+                        </View>
+                        :
+                        <Button onPress={() => generateCode()}>
+                            Generate Code
+                        </Button>
+                }
 
-    return (
-        <View style={{ marginTop: 50 }}>
-            <Text>{user.email}</Text>
-            {
-                (user.portfolio_code) ?
-                    <Text> {user.portfolio_code}</Text> :
-                    <Button
-                        onPress={() => generateCode()}
-                    >Generate Code
-                    </Button>
-            }
-
-        </View>
-    )
+            </View>
+        )
+    } else {
+        return null
+    }
 
 }
 
