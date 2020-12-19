@@ -12,8 +12,21 @@ export default function UserProfileScreen() {
 
     const { user, token, setUser } = useContext(AuthContext)
 
-    const generateCode = () => {
-        fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
+    const generateCode =  async () => {
+        try{
+            const response = await api.post('refresh-portfolio-code')
+            if(response.result){
+                setUser({
+                    ...user,
+                    portfolio_code: response.payload.portfolio_code,
+                })
+            }else{
+                console.log(response.errors[0])
+            }
+           }catch(err){
+                console.log(err)
+           }
+       /*  fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
             method: 'POST',
             Authorization: token
         })
@@ -28,7 +41,7 @@ export default function UserProfileScreen() {
                 }
 
             })
-
+ */
     }
 
 

@@ -9,11 +9,18 @@ import {AuthContext} from '../context/AuthContext'
 export default function TradeScreen(props) {
     
     const{token} = useContext(AuthContext)
-    const [portofolioCode, setPortfolioCode] = useState('')
+    const [portofolio_code, setPortfolioCode] = useState('')
     const card_id = (props.route.params.id)
     
+    const tradeCard = async () =>{
+       try{
+        const response = await api.post('move-card', {card_id, portofolio_code})
+       }catch(err){
+            console.log(err)
+       }
+    }
 
-     const tradeCard = () => {
+/*      const tradeCard = () => {
 
         fetch('https://tree-rn-server.herokuapp.com/move-card',
             {
@@ -30,7 +37,7 @@ export default function TradeScreen(props) {
             })
             .then(response => response.json())
            
-    } 
+    }  */
   /*   const tradeCard = async () =>{
         const response = await api.post('move-card',{card_id, portofolioCode})
     } */
