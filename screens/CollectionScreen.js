@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import { useIsFocused } from '@react-navigation/native'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Button from '../components/Button'
 import sizes from '../config/sizes'
+import {CardContext} from '../context/CardContext'
+import {AuthContext} from '../context/AuthContext'
 
 
 export default function CollectionScreen({ navigation }) {
 
-    const [cardList, setCardList] = useState([])
+/*     const [cardList, setCardList] = useState([])
 
     useEffect(() => {
         fetch('https://tree-rn-server.herokuapp.com/get-cards', 'GET')
             .then(response => response.json())
             .then(data => setCardList(data.payload.cards))
-    }, [])
+    }, []) */
+
+    const { cards, getCards  } = useContext(CardContext) 
+    const {user} = useContext(AuthContext)
+    //TORNA TRUE O FALSE SE SIAMO DENTRO LA SCHERMATA
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+        if(isFocused) getCards()
+    }, [isFocused])
 
     const styles = StyleSheet.create({
         cardList: {
@@ -46,7 +58,7 @@ export default function CollectionScreen({ navigation }) {
     return (
         <ScrollView style={styles.cardList}>
             {
-                cardList.map((card) => {
+                cards.map((card) => {
                     return (
                         <View style={styles.cardBorder} key={card.id}>
                             <View style={styles.cardElement}>
