@@ -11,6 +11,7 @@ export default function TradeScreen(props, {navigate}) {
 
     const { token } = useContext(AuthContext)
     
+    const[portfolio_code, setPortfolioCode] = useState('')
     const [error, setError] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
     const [messageOpen, setMessageOpen] = useState(false)
@@ -27,6 +28,7 @@ export default function TradeScreen(props, {navigate}) {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
+        setPortfolioCode(data)
         alert(`Il codice è stato salvato , premi invia per inviare la carta`);
     }
 
@@ -77,7 +79,7 @@ export default function TradeScreen(props, {navigate}) {
     return (
         <>
   <Alert open={messageOpen} message={alertMessage} onClose={() => { error ? setMessageOpen() : backToList() }} typology={error ? 'danger' : 'success'} /> 
-        <View >
+        <View style={{marginTop: 200}}>
             <View style={{ justifyContent: 'center' }}>
                 
                 <Button onPress={() => qrScan()}>SCAN QR CODE</Button>
@@ -85,7 +87,7 @@ export default function TradeScreen(props, {navigate}) {
                 {
                     (readQR) &&
                     <BarCodeScanner
-                        style={{ height: 500, width: 400, }}
+                        style={{ height: 200, width: 400, }}
                         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                         barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
                         
