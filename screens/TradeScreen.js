@@ -51,7 +51,7 @@ export default function TradeScreen(props, { navigate }) {
             },
             body: JSON.stringify({
                 "card_id": card_id,
-                "portfolio_code": portofolio_code
+                "portfolio_code": portfolio_code
             }),
             method: 'POST'
         })
@@ -90,7 +90,7 @@ export default function TradeScreen(props, { navigate }) {
                             style={{ height: 200, width: 400, }}
                             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                             barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-
+s
                         />
                     }
 
