@@ -12,36 +12,36 @@ export default function UserProfileScreen() {
 
     const { user, token, setUser } = useContext(AuthContext)
 
-    const generateCode =  async () => {
-        try{
+    const generateCode = async () => {
+        try {
             const response = await api.post('refresh-portfolio-code')
-            if(response.result){
+            if (response.result) {
                 setUser({
                     ...user,
                     portfolio_code: response.payload.portfolio_code,
                 })
-            }else{
+            } else {
                 console.log(response.errors[0])
             }
-           }catch(err){
-                console.log(err)
-           }
-       /*  fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
-            method: 'POST',
-            Authorization: token
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('RESPONSE', data)
-                if (data.result) {
-                    setUser({
-                        ...user,
-                        portfolio_code: data.payload.portfolio_code,
-                    })
-                }
-
-            })
- */
+        } catch (err) {
+            console.log(err)
+        }
+        /*  fetch('https://tree-rn-server.herokuapp.com/refresh-portfolio-code', {
+             method: 'POST',
+             Authorization: token
+         })
+             .then(res => res.json())
+             .then(data => {
+                 console.log('RESPONSE', data)
+                 if (data.result) {
+                     setUser({
+                         ...user,
+                         portfolio_code: data.payload.portfolio_code,
+                     })
+                 }
+ 
+             })
+  */
     }
 
 
@@ -60,7 +60,7 @@ export default function UserProfileScreen() {
                     (user.portfolio_code) ?
                         <View>
                             <Text> {user.portfolio_code}</Text>
-                            <QRCode value={ user.portfolio_code}/>
+                            <QRCode value={user.portfolio_code} />
                         </View>
                         :
                         <Button onPress={() => generateCode()}>
