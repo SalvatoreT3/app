@@ -47,7 +47,7 @@ export default function UserProfileScreen() {
                     (user.portfolio_code) ?
                         <View>
                             <Text> {user.portfolio_code}</Text>
-                            <QRCode value={ user.portfolio_code} />
+                            <QRCode value={user.portfolio_code} />
                         </View>
                         :
                         <Button onPress={() => generateCode()}>
