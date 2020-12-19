@@ -13,7 +13,7 @@ export default function TradeScreen(props) {
             <Text>{props.route.params.game}</Text>
             <Text>{props.route.params.id}</Text>
             <Button>Trade Card</Button>
-            <Pressable onPress={() => nav.navigate('TradeScreenB', props.route.params)}>
+            <Pressable onPress={() => nav.navigate('TradeScreenB', props.route.param)}>
                 <Text>No QR Code?</Text>
             </Pressable>
         </View>
