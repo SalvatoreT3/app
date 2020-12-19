@@ -4,21 +4,21 @@ import Title from '../components/Title'
 import Button from '../components/Button'
 import Spacer from '../components/Spacer'
 import { layoutStyles } from '../styles/Layout'
-
+import { CardContext } from '../context/CardContext'
 import { AuthContext } from '../context/AuthContext'
 import InfoBox  from '../components/InfoBox'
+import { useIsFocused } from '@react-navigation/native'
 
 
 export default function DashboardScreen(props) {
 
-    const { onLogout } = useContext(AuthContext)
-    const [cards, setCards] = useState([])
+    const { token, onLogout } = useContext(AuthContext)
+    const{cards, getCards} = useContext(CardContext)
+    const isFocused = useIsFocused()
 
     useEffect(() => {
-        fetch('https://tree-rn-server.herokuapp.com/get-cards', 'GET')
-            .then(response => response.json())
-            .then(data => setCards(data.payload.cards))
-    }, [])
+        if(isFocused) getCards(token)
+    }, [isFocused])
 
     return (
         <View style={[layoutStyles.container, { flex: 1, justifyContent: 'space-between' }]}>
