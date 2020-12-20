@@ -7,6 +7,7 @@ import sizes from '../config/sizes'
 
 
 export default function Alert({
+  
   open,
   onClose,
   message = null,
