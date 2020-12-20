@@ -1,14 +1,12 @@
 import React, { useState, useRef, createRef, useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import { ScrollView, View } from 'react-native'
-import Input from '../components/Input'
+import { ScrollView, View, Text } from 'react-native'
+import CheckBox from '@react-native-community/checkbox';
 import Spacer from '../components/Spacer'
 import Title from '../components/Title'
 import Button from '../components/Button'
 import Form from '../components/Form'
 import useForm from '../hooks/useForm'
-import apis from '../config/apis'
-import useFetch from '../hooks/useFetch'
 import Alert from '../components/Alert'
 import { layoutStyles } from '../styles/Layout'
 import api from '../Utility/api'
@@ -36,6 +34,7 @@ export default function SignupScreen(props) {
   const [messageOpen, setMessageOpen] = useState(false)
   const { user, manageUserData } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
+  const [isChecked, setChecked] = useState(false)
 
   const submitSignup = async () => {
     // imposto la richiesta come in corso
@@ -103,12 +102,26 @@ export default function SignupScreen(props) {
 
         <Form inputs={inputs} updateInputValue={(name, text) => setFormValue(name, text)} />
 
+        <View style={{ flexDirection: 'row' }}>
+          <CheckBox
+            disabled={loading || !formData.valid}
+            value={isChecked}
+            onValueChange={setChecked}
+          />
+
+          <Text>Ho letto e accetto l'informativa sulla privacy.</Text>
+
+        </View>
+
+        <Spacer size={4} />
+
         <Button
-          disabled={loading || !formData.valid}
+          disabled={loading || !formData.valid || (!isChecked)}
           onPress={submitSignup}
         >Registrati</Button>
 
         <Spacer size={10} />
+
       </ScrollView>
     </View>
   )

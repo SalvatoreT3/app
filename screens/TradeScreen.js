@@ -66,7 +66,7 @@ export default function TradeScreen(props, { navigate }) {
                 if (response.result == false) {
                     setMessageOpen(true)
                     setError('danger')
-                    setAlertMessage(resp.errors[0].message)
+                    setAlertMessage(response.errors[0].message)
                 }
 
             })
@@ -90,7 +90,6 @@ export default function TradeScreen(props, { navigate }) {
                             style={{ height: 200, width: 400, }}
                             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                             barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-s
                         />
                     }
 

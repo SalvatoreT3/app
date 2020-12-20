@@ -5,7 +5,7 @@ export default function InfoBox({children}) {
 
     const today = new Date()
     const date = today.getDate()
-    const month = today.getMonth()
+    const month = today.getMonth()+1
     const fulldate = date+'/'+month
     return (
        <View>
