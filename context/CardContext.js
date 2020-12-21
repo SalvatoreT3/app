@@ -2,13 +2,14 @@ import React, { createContext, useContext, useCallback, useState, useEffect } fr
 import { CommonActions } from '@react-navigation/native'
 import { AuthContext } from './AuthContext'
 import api from '../Utility/api'
-import AsyncStorage from '@react-native-community/async-storage'
+import { AsyncStorage } from 'react-native';
 
 
 export const CardContext = createContext()
 
 export default function CardProvider({ children }) {
 
+    const [tradesCount, setTradesCount] = useState(0)
     const [cards, setCards] = useState([])
     const { token } = useContext(AuthContext)
 
@@ -28,11 +29,13 @@ export default function CardProvider({ children }) {
         } */
 
 
-    async function getCards() {
 
-        try {
-            const { result, payload, errors } = await api.get('get-cards')
-            if (result) {
+
+    async function getCards(){
+        
+        try{
+            const {result, payload, errors} = await api.get('get-cards')
+            if(result) {
                 setCards(payload.cards)
             } else {
                 console.log(errors)
@@ -43,7 +46,7 @@ export default function CardProvider({ children }) {
     }
 
     return (
-        <CardContext.Provider value={{ cards, getCards, setCards, tradeCards }}>
+        <CardContext.Provider value={{ cards, getCards, setCards, tradesCount, setTradesCount }}>
             { children}
         </CardContext.Provider>
     )

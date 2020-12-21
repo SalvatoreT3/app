@@ -11,6 +11,8 @@ export default function TradeScreen(props) {
 
     const { token, user } = useContext(AuthContext)
 
+    const {tradesCount ,setTradesCount} = useContext(CardContext)
+
     const [messageOpen, setMessageOpen] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
     const [error, setError] = useState(false)
@@ -44,6 +46,7 @@ export default function TradeScreen(props) {
                             setMessageOpen(true)
                             setError(false)
                             setAlertMessage('Card transferred succesfully')
+                            setTradesCount(tradesCount + 1)
                         }
                         if (resp.result == false) {
                             setMessageOpen(true)
@@ -68,7 +71,6 @@ export default function TradeScreen(props) {
     const backToList = () => {
         props.navigation.navigate('CollectionScreen')
     }
-
 
 
     return (

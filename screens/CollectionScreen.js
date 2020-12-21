@@ -1,72 +1,47 @@
 import { useIsFocused } from '@react-navigation/native'
-import React, { useState, useEffect, useContext } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect, useContext } from 'react'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Button from '../components/Button'
 import sizes from '../config/sizes'
-import {CardContext} from '../context/CardContext'
-import {AuthContext} from '../context/AuthContext'
+import { Feather } from '@expo/vector-icons';
+import { CardContext } from '../context/CardContext'
+import { AuthContext } from '../context/AuthContext'
 
 
 export default function CollectionScreen({ navigation }) {
+    const urlImg = './../assets/Pokemon/';
 
-/*     const [cardList, setCardList] = useState([])
-
-    useEffect(() => {
-        fetch('https://tree-rn-server.herokuapp.com/get-cards', 'GET')
-            .then(response => response.json())
-            .then(data => setCardList(data.payload.cards))
-    }, []) */
-
-    const { cards, getCards  } = useContext(CardContext) 
-    const {user} = useContext(AuthContext)
+    const { cards, getCards } = useContext(CardContext)
+    const { user } = useContext(AuthContext)
     //TORNA TRUE O FALSE SE SIAMO DENTRO LA SCHERMATA
     const isFocused = useIsFocused()
 
     useEffect(() => {
-        if(isFocused) getCards()
+        if (isFocused) getCards()
     }, [isFocused])
-
-    const styles = StyleSheet.create({
-        cardList: {
-            width: '100%',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: sizes.unitSize * 10,
-        },
-        cardElement: {
-
-            marginBottom: sizes.unitSize * 10,
-        },
-        cardBorder: {
-            borderTopColor: 'black',
-            borderTopWidth: 1,           
-            marginBottom: sizes.unitSize * 5,
-            marginTop: sizes.unitSize * 5,
-            padding: sizes.unitSize * 5,
-        },
-        circularButton: {
-            width: 120,
-            height: 40,
-            borderRadius: 25,
-        },
-        cardTitle: {
-            fontSize: 20,
-        }
-    })
 
     return (
         <ScrollView style={styles.cardList}>
             {
                 cards.map((card) => {
                     return (
-                        <View style={styles.cardBorder} key={card.id}>
-                            <View style={styles.cardElement}>
-                                <Text style={styles.cardTitle}>{card.name}</Text>
-                                <Text>{card.game}</Text>
+                        <View key={card.id} style={styles.statsContainer}>
+
+                            <View style={{ marginRight: 15 }}>
+                                <Image source={require('./../assets/icon.png')} style={styles.img} resizeMode="center"></Image>
                             </View>
-                            {/*<Button title='Go to Card' onPress={() => navigation.navigate('CardScreen', card)}/>*/}
-                            <Button style={styles.circularButton} onPress={() => navigation.navigate('CardScreen', card)}>To card</Button>
+
+                            <View style={{ width: '35%' }}>
+                                <Text style={styles.cardTitle, { color: 'orange', }}>{card.name}</Text>
+                                <Text style={styles.cardTitle, { fontSize: 18, }}>{card.game}</Text>
+                            </View>
+
+                            <View >
+                                <Button style={styles.circularButton} onPress={() => navigation.navigate('CardScreen', card)}>
+                                    <Feather name="arrow-right-circle" size={34} color="grey" />
+                                </Button>
+                            </View>
                         </View>
                     )
                 })
@@ -76,4 +51,52 @@ export default function CollectionScreen({ navigation }) {
     )
 }
 
+
+const styles = StyleSheet.create({
+    cardList: {
+        flex: 1,
+        width: '100%',
+        marginLeft: 5,
+        marginRight: 15,
+        marginTop: sizes.unitSize * 0,
+
+    },
+
+    circularButton: {
+        width: 100,
+        height: 40,
+        borderRadius: 150,
+        margin: 5,
+        backgroundColor: '#FFFFFF',
+    },
+    cardTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        margin: 5,
+    },
+    img: {
+        width: 100,
+        height: 90,
+        borderRadius: 10,
+        marginRight: 5
+    },
+    statsContainer: {
+        flexDirection: "row",
+        alignSelf: "center",
+        marginTop: 5,
+        padding: 5,
+        margin: 5,
+        backgroundColor: '#FFFFFF',
+    },
+
+    statsBox: {
+        flex: 1,
+        margin: 15,
+        alignItems: "center",
+        borderRadius: 20,
+        backgroundColor: '#F7B40A',
+        height: 250,
+    }
+})
 

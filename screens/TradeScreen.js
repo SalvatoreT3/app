@@ -11,6 +11,7 @@ export default function TradeScreen(props) {
     const nav = props.navigation
     const card_id = props.route.params.id
 
+    const {tradesCount ,setTradesCount} = useContext(CardContext)
     const { token, user } = useContext(AuthContext)
     const userCode = user.portfolio_code
     const [portfolio_code, setPortfolioCode] = useState('')
@@ -80,6 +81,7 @@ export default function TradeScreen(props) {
                             setError(false)
                             setAlertMessage('Card transferred succesfully')
 
+                            setTradesCount(tradesCount + 1)
                         }
                         if (response.result == false) {
                             setMessageOpen(true)
