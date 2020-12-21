@@ -4,20 +4,21 @@ import Title from '../components/Title'
 import Button from '../components/Button'
 import Spacer from '../components/Spacer'
 import { layoutStyles } from '../styles/Layout'
-import { CardContext } from '../context/CardContext'
 import { AuthContext } from '../context/AuthContext'
-import InfoBox  from '../components/InfoBox'
+import { CardContext } from '../context/CardContext'
+import InfoBox from '../components/InfoBox'
 import { useIsFocused } from '@react-navigation/native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 export default function DashboardScreen(props) {
 
     const { token, onLogout } = useContext(AuthContext)
-    const{cards, getCards} = useContext(CardContext)
+    const { cards, getCards } = useContext(CardContext)
     const isFocused = useIsFocused()
 
     useEffect(() => {
-        if(isFocused) getCards(token)
+        if (isFocused) getCards(token)
     }, [isFocused])
 
     return (
@@ -28,7 +29,7 @@ export default function DashboardScreen(props) {
             </View>
 
             <InfoBox>
-                Oggi e il giorno
+                Oggi è il giorno
             </InfoBox>
             <Text>{cards.length + ' carte'}</Text>
             <View>
