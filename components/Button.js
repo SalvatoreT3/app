@@ -22,10 +22,11 @@ import colors from '../config/colors'
 export default function Button ({ children, ...props }) {
   const cleanedProps = Object.assign({}, props, {
     style: [{
-      backgroundColor: colors.black, // fare in modo che cambi in base alle props
+      backgroundColor: '#F7B40A', // fare in modo che cambi in base alle props
       height: 40,
       paddingHorizontal: 20,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      borderRadius: 25,
     }, props.style]
   })
 

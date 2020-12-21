@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { View, Text } from 'react-native'
 import Button from '../components/Button'
 import { AuthContext } from '../context/AuthContext'
+import { CardContext } from '../context/CardContext'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import Alert from '../components/Alert'
 
@@ -10,6 +11,7 @@ export default function TradeScreen(props) {
     const nav = props.navigation
     const card_id = props.route.params.id
 
+    const {tradesCount ,setTradesCount} = useContext(CardContext)
     const { token, user } = useContext(AuthContext)
     const userCode = user.portfolio_code
     const [portfolio_code, setPortfolioCode] = useState('')
@@ -78,6 +80,7 @@ export default function TradeScreen(props) {
                             setMessageOpen(true)
                             setError(false)
                             setAlertMessage('Card transferred succesfully')
+                            setTradesCount(tradesCount + 1)
                         }
                         if (response.result == false) {
                             setMessageOpen(true)
@@ -99,7 +102,7 @@ export default function TradeScreen(props) {
     }
 
 
-    
+
     const backToList = () => {
         props.navigation.navigate('CollectionScreen')
     }

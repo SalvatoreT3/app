@@ -4,11 +4,14 @@ import { useContext } from 'react/cjs/react.development'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import { AuthContext } from '../context/AuthContext'
+import { CardContext } from '../context/CardContext'
 import Alert from '../components/Alert'
 
 export default function TradeScreen(props) {
 
     const { token, user } = useContext(AuthContext)
+
+    const {tradesCount ,setTradesCount} = useContext(CardContext)
 
     const [messageOpen, setMessageOpen] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
@@ -44,6 +47,7 @@ export default function TradeScreen(props) {
                             setMessageOpen(true)
                             setError(false)
                             setAlertMessage('Card transferred succesfully')
+                            setTradesCount(tradesCount + 1)
                         }
                         if (resp.result == false) {
                             setMessageOpen(true)
@@ -70,7 +74,7 @@ export default function TradeScreen(props) {
     }
    
 
-    
+
     return (
         <>
             <Alert open={messageOpen} message={alertMessage} onClose={() => { error ? setMessageOpen() : backToList() }} typology={error ? 'danger' : 'success'} />

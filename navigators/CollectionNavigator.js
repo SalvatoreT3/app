@@ -6,16 +6,18 @@ import CardScreen from '../screens/CardScreen'
 import TradeScreen from '../screens/TradeScreen'
 import TradeScreenB from '../screens/TradeScreenB'
 
+
 const AppStack = createStackNavigator()
 
 export default function CollectionNavigator() {
-    const { token } = useContext(AuthContext)
+    const { token, user } = useContext(AuthContext)
+    const username = user.username
 
     return (
         <AppStack.Navigator
             initialRouteName={CollectionScreen}            
         >
-            <AppStack.Screen name="CollectionScreen" component={CollectionScreen} options={{headerLeft: null, title:'TCG'}}/>
+            <AppStack.Screen name="CollectionScreen" component={CollectionScreen} options={{headerLeft: null, title:`TCG  ${username}`}}/>
             <AppStack.Screen name="CardScreen" component={CardScreen} options={{ title:'TCG'}}/>
             <AppStack.Screen name = "TradeScreen" component={TradeScreen} options={{title:'TCG'}}/>
             <AppStack.Screen name = "TradeScreenB" component={TradeScreenB} options={{title:'TCG'}}/>
