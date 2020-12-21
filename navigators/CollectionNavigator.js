@@ -11,13 +11,13 @@ const AppStack = createStackNavigator()
 
 export default function CollectionNavigator() {
     const { token, user } = useContext(AuthContext)
-    const username = user.username
+   
 
     return (
         <AppStack.Navigator
             initialRouteName={CollectionScreen}            
         >
-            <AppStack.Screen name="CollectionScreen" component={CollectionScreen} options={{headerLeft: null, title:`TCG  ${username}`}}/>
+            <AppStack.Screen name="CollectionScreen" component={CollectionScreen} options={{headerLeft: null, title:`TCG`}}/>
             <AppStack.Screen name="CardScreen" component={CardScreen} options={{ title:'TCG'}}/>
             <AppStack.Screen name = "TradeScreen" component={TradeScreen} options={{title:'TCG'}}/>
             <AppStack.Screen name = "TradeScreenB" component={TradeScreenB} options={{title:'TCG'}}/>
